@@ -1,5 +1,46 @@
-
-# Local build files
-toolchain/
+# Build output
 out/
+*.o
+*.ko
+*.a
+*.cmd
+*.mod
+*.mod.c
+*.order
+*.symvers
+Module.symvers
+modules.order
+
+# Local images / backups
+boot_stock.img
+init_boot_stock.img
+BlossomCore-boot.img
+magiskboot
+
+# Local configs
+running.config
+built.config
+config-diff.txt
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+
+# DEFEX build artifacts
+security/samsung/defex_lsm/defex_packed_rules.bin
+security/samsung/defex_lsm/pack_rules
+
+# Logs
+*.log
 build.log
+
+# Local toolchains
+toolchain/
