@@ -1,4 +1,4 @@
-# BlossomCore-KRNL
+# 🌸 BlossomCore-KRNL
 
 > Custom Linux kernel for the Samsung Galaxy A54 5G (Exynos 1380)
 
@@ -7,47 +7,50 @@
 ![Version](https://img.shields.io/badge/Version-v1.0.0--alpha-blue?style=for-the-badge)
 ![Linux](https://img.shields.io/badge/Linux-5.15.180-blue?style=for-the-badge)
 ![Android](https://img.shields.io/badge/Android-16-green?style=for-the-badge)
-![One UI](https://img.shields.io/badge/One_UI-8-blue?style=for-the-badge)
-![Architecture](https://img.shields.io/badge/Architecture-arm64-success?style=for-the-badge)
-![Platform](https://img.shields.io/badge/Platform-Exynos_1380-purple?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Active_Development-success?style=for-the-badge)
-![License](https://img.shields.io/badge/License-GPL--2.0-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Alpha-orange?style=for-the-badge)
+![License](https://img.shields.io/badge/License-GPL--2.0-red?style=for-the-badge)
 
 </p>
 
-<p align="center">
-
-Performance • Battery • Stability • Security
-
-</p>
+Built and maintained by **GlitchByEmilia**
 
 ---
 
 # About
 
-BlossomCore-KRNL is a custom Linux **5.15.180** kernel for the **Samsung Galaxy A54 5G (SM-A546B)** powered by the **Samsung Exynos 1380** platform.
+BlossomCore-KRNL is a custom Linux kernel for the **Samsung Galaxy A54 5G** powered by the **Samsung Exynos 1380 (S5E8835)** platform.
 
-The project focuses on improving performance, battery life, responsiveness and overall system stability while maintaining compatibility with Samsung's One UI software.
-
-BlossomCore is built from Samsung Open Source kernel sources and is actively developed as an open-source community project.
+The goal of this project is to provide a stable, fast and battery-friendly kernel while remaining as close as possible to Samsung's source code. Future versions will include additional performance improvements, scheduler tuning, memory optimizations and optional overclocking editions.
 
 ---
 
-# Project Status
+# Current Status
 
-🟢 **Active Development**
+## ✅ Successfully achieved
 
-Current progress:
+- Kernel successfully compiled from source
+- Successfully booted on real hardware
+- Boot image successfully repacked
+- Boot image successfully flashed
+- Magisk compatibility verified
+- Existing Magisk installation is preserved
+- Root access remains fully functional
+- Public alpha release published
 
-- ✅ Repository created
-- ✅ Source tree prepared
-- ✅ Kernel successfully compiled
-- ✅ Samsung boot image rebuilt
-- ✅ Boot image verified
-- ✅ Successfully booted on Samsung Galaxy A54 5G (SM-A546B)
-- ✅ Flash testing completed
-- 🚧 Stability testing in progress
-- 🚧 Performance tuning in progress
+---
+
+# Verified Device
+
+| Component | Value |
+|-----------|-------|
+| Device | Samsung Galaxy A54 5G |
+| Model | SM-A546B |
+| Codename | a54x |
+| SoC | Samsung Exynos 1380 |
+| Kernel | Linux 5.15.180 |
+| Android | Android 16 |
+| ROM | Lich UI 5.1.4 |
+| Base | One UI 8 Port (Galaxy S23 FE) |
 
 ---
 
@@ -55,213 +58,190 @@ Current progress:
 
 ## Current
 
-- Linux 5.15.180
-- Android 16 support
-- One UI 8 support
-- LLVM / Clang build
-- Samsung Boot Header v4
-- Successfully booting on SM-A546B
-- Custom kernel branding
-- GPL v2 licensed
+- Stock Samsung source
+- Stable kernel
+- Boot verified
+- Magisk compatible
+- Root preserved
+- Flashable boot image
+
+---
 
 ## Planned
 
 - KernelSU support
-- KernelSU Next support
-- CPU scheduler tuning
-- UClamp optimizations
-- Memory management improvements
-- Thermal tuning
+- Performance tuning
+- Battery optimizations
+- Thermal improvements
+- Scheduler tuning
+- Memory optimizations
 - GPU tuning
-- I/O scheduler optimizations
-- Power efficiency improvements
-- GitHub Actions builds
-- Flashable AnyKernel3 releases
-- OC Edition
+- I/O tuning
+- WireGuard support
+- Optional OC Edition
 
 ---
 
-# Supported Devices
+# Downloads
 
-| Device | Model | Platform | Status |
-|---------|--------|----------|--------|
-| Samsung Galaxy A54 5G | SM-A546B | Exynos 1380 | ✅ Boot Verified |
+Current releases are available from the GitHub Releases page.
 
-> Other Exynos 1380 variants may work but have not yet been tested.
+Current release:
+
+**v1.0.0-alpha**
+
+Included files:
+
+- BlossomCore-boot.img
+- BlossomCore-boot.img.sha256
 
 ---
 
-# Build Requirements
+# Installation
 
-Recommended environment:
+## Requirements
 
-- Linux
-- LLVM / Clang
-- Git
-- Python 3
-- GNU Make
+- Samsung Galaxy A54 5G
+- Supported firmware
+- Unlocked bootloader
+- Backup of your original boot image
+- Fastboot or custom recovery / root access
+
+---
+
+## Flashing
+
+Flash the provided boot image using your preferred method.
+
+Always verify the SHA-256 checksum before flashing.
+
+---
+
+# Magisk Compatibility
+
+BlossomCore-KRNL has been successfully tested with Magisk.
+
+Verified:
+
+- Existing Magisk installation preserved
+- Root access functional
+- Boot successful
+- No Magisk reinstall required
 
 ---
 
 # Building
 
-Clone the repository:
+Clone the repository
 
 ```bash
 git clone https://github.com/emiliaplays/BlossomCore-KRNL.git
 cd BlossomCore-KRNL
 ```
 
-Generate configuration:
+Configure your build environment and compile the kernel.
 
-```bash
-make O=out \
-ARCH=arm64 \
-LLVM=1 \
-LLVM_IAS=1 \
-s5e8835-a54xnaxx_defconfig
-```
+Output image:
 
-Compile:
-
-```bash
-make -j$(nproc) \
-O=out \
-ARCH=arm64 \
-LLVM=1 \
-LLVM_IAS=1
-```
-
-Kernel output:
-
-```
+```text
 out/arch/arm64/boot/Image
 ```
 
 ---
 
-# Flashing
-
-⚠️ Flashing a custom kernel always carries a risk.
-
-Before flashing:
-
-- Backup your original boot image.
-- Backup important data.
-- Ensure you know how to restore stock firmware.
-- Use only kernels built for your device model.
-
-The developers are **not responsible** for damaged devices, bootloops or data loss.
-
----
-
 # Roadmap
 
-## Bring-up
+## v1.0
 
-- [x] Repository setup
-- [x] Source preparation
-- [x] Kernel compilation
-- [x] Boot image repacking
-- [x] Boot image verification
-- [x] First successful boot
-- [x] Flash testing
+- Stable installer
+- GitHub Actions
+- Automated releases
 
-## Performance
+## v1.1
 
-- [ ] CPU scheduler tuning
-- [ ] Memory optimization
-- [ ] I/O optimization
-- [ ] Thermal improvements
-- [ ] GPU tuning
+- KernelSU
+- Performance improvements
+- Battery tuning
+- Scheduler improvements
 
-## Features
+## v2.0
 
-- [ ] KernelSU
-- [ ] KernelSU Next
-- [ ] Dynamic performance profiles
-- [ ] AnyKernel3 installer
-- [ ] GitHub Actions CI
-- [ ] Stable v1.0 release
-- [ ] BlossomCore OC Edition
+- OC Edition
+- Advanced thermal tuning
+- Additional governors
+- More performance profiles
 
 ---
 
-# Repository Structure
+# Compatibility
 
-```
-android/
-arch/
-block/
-certs/
-crypto/
-Documentation/
-drivers/
-firmware/
-fs/
-gki/
-include/
-init/
-ipc/
-kernel/
-lib/
-mm/
-net/
-samples/
-scripts/
-security/
-sound/
-tools/
-virt/
-```
+Currently verified only on:
 
----
+- Samsung Galaxy A54 5G
+- SM-A546B
+- Exynos 1380
+- Android 16
+- Lich UI 5.1.4 (One UI 8 Port)
 
-# Credits
-
-Special thanks to:
-
-- Samsung Open Source Release Center
-- physwizz
-- afaneh92
-- Android Common Kernel Team
-- Linux Kernel Developers
-- LLVM Project
-
-Without their work this project would not be possible.
+Compatibility with other firmware versions has **not** yet been verified.
 
 ---
 
 # Contributing
 
-Pull requests, bug reports and feature requests are welcome.
+Pull requests, bug reports and feature suggestions are always welcome.
 
-Please keep commits clean, descriptive and well documented.
+Please include:
+
+- Device model
+- Firmware version
+- Boot logs
+- Kernel logs
+- Steps to reproduce
+
+---
+
+# Disclaimer
+
+**Your warranty is now void.**
+
+Although this kernel has been tested successfully on the configuration listed above, you are solely responsible for anything that happens to your device.
+
+Always keep a backup of your original boot image before flashing.
+
+The maintainer is **not responsible** for:
+
+- Bootloops
+- Soft bricks
+- Hard bricks
+- Data loss
+- Damaged devices
+
+Flash at your own risk.
 
 ---
 
 # License
 
-BlossomCore-KRNL is licensed under the **GNU General Public License v2.0**.
+This project is licensed under the **GNU General Public License v2.0 (GPL-2.0)**.
 
-See the **LICENSE** file for more information.
+See the LICENSE file for more information.
 
 ---
 
-# Maintainer
+# Credits
 
-**GlitchByEmilia**
-
-GitHub:
-
-https://github.com/emiliaplays
+- Samsung Open Source Release Center
+- Linux Kernel Developers
+- Magisk (topjohnwu)
+- KernelSU Developers
+- AnyKernel3 Developers
+- The Android Open Source Project
 
 ---
 
 <p align="center">
 
-🌸 BlossomCore-KRNL
-
-Built with ❤️ for the Samsung Galaxy community.
+Made with ❤️ by **GlitchByEmilia**
 
 </p>
