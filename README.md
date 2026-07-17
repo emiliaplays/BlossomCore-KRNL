@@ -1,150 +1,277 @@
-# How do I submit patches to Android Common Kernels
+# BlossomCore-KRNL
 
-1. BEST: Make all of your changes to upstream Linux. If appropriate, backport to the stable releases.
-   These patches will be merged automatically in the corresponding common kernels. If the patch is already
-   in upstream Linux, post a backport of the patch that conforms to the patch requirements below.
-   - Do not send patches upstream that contain only symbol exports. To be considered for upstream Linux,
-additions of `EXPORT_SYMBOL_GPL()` require an in-tree modular driver that uses the symbol -- so include
-the new driver or changes to an existing driver in the same patchset as the export.
-   - When sending patches upstream, the commit message must contain a clear case for why the patch
-is needed and beneficial to the community. Enabling out-of-tree drivers or functionality is not
-not a persuasive case.
+> Custom Linux kernel for the Samsung Galaxy A54 5G (Exynos 1380)
 
-2. LESS GOOD: Develop your patches out-of-tree (from an upstream Linux point-of-view). Unless these are
-   fixing an Android-specific bug, these are very unlikely to be accepted unless they have been
-   coordinated with kernel-team@android.com. If you want to proceed, post a patch that conforms to the
-   patch requirements below.
+<p align="center">
 
-# Common Kernel patch requirements
+![Version](https://img.shields.io/badge/Version-v1.0.0--alpha-blue?style=for-the-badge)
+![Linux](https://img.shields.io/badge/Linux-5.15.180-blue?style=for-the-badge)
+![Android](https://img.shields.io/badge/Android-16-green?style=for-the-badge)
+![One UI](https://img.shields.io/badge/One_UI-8-blue?style=for-the-badge)
+![Architecture](https://img.shields.io/badge/Architecture-arm64-success?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-Exynos_1380-purple?style=for-the-badge)
+![License](https://img.shields.io/badge/License-GPL--2.0-orange?style=for-the-badge)
 
-- All patches must conform to the Linux kernel coding standards and pass `scripts/checkpatch.pl`
-- Patches shall not break gki_defconfig or allmodconfig builds for arm, arm64, x86, x86_64 architectures
-(see  https://source.android.com/setup/build/building-kernels)
-- If the patch is not merged from an upstream branch, the subject must be tagged with the type of patch:
-`UPSTREAM:`, `BACKPORT:`, `FROMGIT:`, `FROMLIST:`, or `ANDROID:`.
-- All patches must have a `Change-Id:` tag (see https://gerrit-review.googlesource.com/Documentation/user-changeid.html)
-- If an Android bug has been assigned, there must be a `Bug:` tag.
-- All patches must have a `Signed-off-by:` tag by the author and the submitter
+</p>
 
-Additional requirements are listed below based on patch type
+<p align="center">
 
-## Requirements for backports from mainline Linux: `UPSTREAM:`, `BACKPORT:`
+Performance • Battery • Stability • Security
 
-- If the patch is a cherry-pick from Linux mainline with no changes at all
-    - tag the patch subject with `UPSTREAM:`.
-    - add upstream commit information with a `(cherry picked from commit ...)` line
-    - Example:
-        - if the upstream commit message is
-```
-        important patch from upstream
+</p>
 
-        This is the detailed description of the important patch
+---
 
-        Signed-off-by: Fred Jones <fred.jones@foo.org>
-```
->- then Joe Smith would upload the patch for the common kernel as
-```
-        UPSTREAM: important patch from upstream
+# About
 
-        This is the detailed description of the important patch
+BlossomCore-KRNL is a custom Linux **5.15.180** kernel developed for the **Samsung Galaxy A54 5G** powered by the **Samsung Exynos 1380** platform.
 
-        Signed-off-by: Fred Jones <fred.jones@foo.org>
+The project focuses on providing a clean, stable and optimized kernel while maintaining maximum compatibility with Samsung's One UI software.
 
-        Bug: 135791357
-        Change-Id: I4caaaa566ea080fa148c5e768bb1a0b6f7201c01
-        (cherry picked from commit c31e73121f4c1ec41143423ac6ce3ce6dafdcec1)
-        Signed-off-by: Joe Smith <joe.smith@foo.org>
-```
+BlossomCore is developed from Samsung Open Source kernel sources and aims to provide meaningful performance and battery improvements without sacrificing reliability.
 
-- If the patch requires any changes from the upstream version, tag the patch with `BACKPORT:`
-instead of `UPSTREAM:`.
-    - use the same tags as `UPSTREAM:`
-    - add comments about the changes under the `(cherry picked from commit ...)` line
-    - Example:
-```
-        BACKPORT: important patch from upstream
+---
 
-        This is the detailed description of the important patch
+# Project Status
 
-        Signed-off-by: Fred Jones <fred.jones@foo.org>
+🚧 **BlossomCore-KRNL is currently in active development.**
 
-        Bug: 135791357
-        Change-Id: I4caaaa566ea080fa148c5e768bb1a0b6f7201c01
-        (cherry picked from commit c31e73121f4c1ec41143423ac6ce3ce6dafdcec1)
-        [joe: Resolved minor conflict in drivers/foo/bar.c ]
-        Signed-off-by: Joe Smith <joe.smith@foo.org>
-```
+Current progress:
 
-## Requirements for other backports: `FROMGIT:`, `FROMLIST:`,
+- ✅ Repository created
+- ✅ Source tree prepared
+- ✅ Kernel successfully compiled
+- ✅ Samsung boot image successfully rebuilt
+- ✅ Boot image verified
+- ⏳ First on-device boot test pending
+- ⏳ Public release pending
 
-- If the patch has been merged into an upstream maintainer tree, but has not yet
-been merged into Linux mainline
-    - tag the patch subject with `FROMGIT:`
-    - add info on where the patch came from as `(cherry picked from commit <sha1> <repo> <branch>)`. This
-must be a stable maintainer branch (not rebased, so don't use `linux-next` for example).
-    - if changes were required, use `BACKPORT: FROMGIT:`
-    - Example:
-        - if the commit message in the maintainer tree is
-```
-        important patch from upstream
+---
 
-        This is the detailed description of the important patch
+# Goals
 
-        Signed-off-by: Fred Jones <fred.jones@foo.org>
-```
->- then Joe Smith would upload the patch for the common kernel as
-```
-        FROMGIT: important patch from upstream
+BlossomCore aims to provide:
 
-        This is the detailed description of the important patch
+- Improved CPU scheduling
+- Better battery efficiency
+- Lower system latency
+- Better memory management
+- Improved I/O performance
+- Clean and maintainable source tree
+- Better thermal behaviour
+- Daily-driver stability
+- Future KernelSU support
 
-        Signed-off-by: Fred Jones <fred.jones@foo.org>
+---
 
-        Bug: 135791357
-        (cherry picked from commit 878a2fd9de10b03d11d2f622250285c7e63deace
-         https://git.kernel.org/pub/scm/linux/kernel/git/foo/bar.git test-branch)
-        Change-Id: I4caaaa566ea080fa148c5e768bb1a0b6f7201c01
-        Signed-off-by: Joe Smith <joe.smith@foo.org>
-```
+# Current Features
 
+- Linux 5.15.180
+- Android 16 compatible
+- One UI 8 compatible
+- LLVM / Clang built
+- Samsung Boot Header v4 support
+- Custom kernel branding
+- GPL v2 licensed
 
-- If the patch has been submitted to LKML, but not accepted into any maintainer tree
-    - tag the patch subject with `FROMLIST:`
-    - add a `Link:` tag with a link to the submittal on lore.kernel.org
-    - add a `Bug:` tag with the Android bug (required for patches not accepted into
-a maintainer tree)
-    - if changes were required, use `BACKPORT: FROMLIST:`
-    - Example:
-```
-        FROMLIST: important patch from upstream
+---
 
-        This is the detailed description of the important patch
+# Planned Features
 
-        Signed-off-by: Fred Jones <fred.jones@foo.org>
+- KernelSU integration
+- KernelSU Next support
+- CPU scheduler tuning
+- Memory optimizations
+- I/O scheduler improvements
+- Thermal tuning
+- Dynamic performance profiles
+- GPU optimizations
+- Optional OC Edition
+- GitHub Actions automated builds
+- Flashable release packages
 
-        Bug: 135791357
-        Link: https://lore.kernel.org/lkml/20190619171517.GA17557@someone.com/
-        Change-Id: I4caaaa566ea080fa148c5e768bb1a0b6f7201c01
-        Signed-off-by: Joe Smith <joe.smith@foo.org>
+---
+
+# Target Device
+
+| Device | Model | Platform | Status |
+|---------|--------|----------|--------|
+| Samsung Galaxy A54 5G | SM-A546B | Exynos 1380 | 🚧 Initial testing |
+
+> Other Exynos 1380 variants may work but are currently untested.
+
+---
+
+# Build Requirements
+
+Recommended environment:
+
+- Linux
+- LLVM / Clang
+- Python 3
+- Git
+- GNU Make
+
+---
+
+# Building
+
+Clone the repository:
+
+```bash
+git clone https://github.com/emiliaplays/BlossomCore-KRNL.git
+cd BlossomCore-KRNL
 ```
 
-## Requirements for Android-specific patches: `ANDROID:`
+Generate the configuration:
 
-- If the patch is fixing a bug to Android-specific code
-    - tag the patch subject with `ANDROID:`
-    - add a `Fixes:` tag that cites the patch with the bug
-    - Example:
-```
-        ANDROID: fix android-specific bug in foobar.c
-
-        This is the detailed description of the important fix
-
-        Fixes: 1234abcd2468 ("foobar: add cool feature")
-        Change-Id: I4caaaa566ea080fa148c5e768bb1a0b6f7201c01
-        Signed-off-by: Joe Smith <joe.smith@foo.org>
+```bash
+make O=out \
+ARCH=arm64 \
+LLVM=1 \
+LLVM_IAS=1 \
+s5e8835-a54xnaxx_defconfig
 ```
 
-- If the patch is a new feature
-    - tag the patch subject with `ANDROID:`
-    - add a `Bug:` tag with the Android bug (required for android-specific features)
+Compile:
 
+```bash
+make -j$(nproc) \
+O=out \
+ARCH=arm64 \
+LLVM=1 \
+LLVM_IAS=1
+```
+
+Kernel output:
+
+```
+out/arch/arm64/boot/Image
+```
+
+---
+
+# Flashing
+
+⚠️ **Development Project**
+
+Current builds are intended for development and testing.
+
+Before flashing:
+
+- Backup your original boot image.
+- Backup important data.
+- Make sure you know how to restore Samsung stock firmware.
+
+The developers are **not responsible** for any damage, data loss or bootloops.
+
+---
+
+# Roadmap
+
+## Initial Bring-up
+
+- [x] Repository setup
+- [x] Source preparation
+- [x] Kernel compilation
+- [x] Boot image repacking
+- [x] Boot image verification
+- [ ] First successful boot
+- [ ] Stability verification
+
+## Performance
+
+- [ ] CPU scheduler tuning
+- [ ] Memory optimization
+- [ ] I/O optimization
+- [ ] Thermal improvements
+- [ ] GPU tuning
+
+## Features
+
+- [ ] KernelSU
+- [ ] KernelSU Next
+- [ ] OC Edition
+- [ ] GitHub Actions
+- [ ] Stable v1.0 release
+
+---
+
+# Repository Structure
+
+```
+android/
+arch/
+block/
+certs/
+crypto/
+Documentation/
+drivers/
+firmware/
+fs/
+gki/
+include/
+init/
+ipc/
+kernel/
+lib/
+mm/
+net/
+samples/
+scripts/
+security/
+sound/
+tools/
+virt/
+```
+
+---
+
+# Credits
+
+Special thanks to:
+
+- Samsung Open Source Release Center
+- physwizz
+- afaneh92
+- Android Common Kernel Team
+- Linux Kernel Developers
+- LLVM Project
+
+Without their work, this project would not exist.
+
+---
+
+# Contributing
+
+Contributions, bug reports and feature suggestions are always welcome.
+
+Please keep commits clean, descriptive and well documented.
+
+---
+
+# License
+
+BlossomCore-KRNL is licensed under the **GNU General Public License v2.0**.
+
+See the LICENSE file for more information.
+
+---
+
+# Maintainer
+
+**GlitchByEmilia**
+
+GitHub
+
+https://github.com/emiliaplays
+
+---
+
+<p align="center">
+
+🌸 BlossomCore-KRNL
+
+Built with passion for the Samsung Galaxy A54 community.
+
+</p>
