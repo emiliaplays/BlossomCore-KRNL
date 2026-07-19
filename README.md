@@ -4,6 +4,7 @@
 
 <p align="center">
 
+![Version](https://img.shields.io/badge/Version-v1.0.0--beta1-blue?style=for-the-badge)
 ![Linux](https://img.shields.io/badge/Linux-5.15.180-blue?style=for-the-badge)
 ![Android](https://img.shields.io/badge/Android-16-green?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Beta-orange?style=for-the-badge)
