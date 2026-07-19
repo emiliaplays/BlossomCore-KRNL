@@ -2,6 +2,8 @@
 
 > Custom Linux kernel for the Samsung Galaxy A54 5G (Exynos 1380)
 
+**Current release:** `v1.0.0-beta1`
+
 <p align="center">
 
 ![Linux](https://img.shields.io/badge/Linux-5.15.180-blue?style=for-the-badge)
